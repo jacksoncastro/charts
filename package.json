@@ -1,0 +1,16 @@
+{
+  "name": "exporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jackson Castro",
+  "license": "ISC",
+  "dependencies": {
+    "highcharts-export-server": "^2.0.28",
+    "percentile": "^1.4.0",
+    "aws-sdk": "^2.747.0"
+  }
+}
