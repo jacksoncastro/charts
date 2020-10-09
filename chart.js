@@ -49,8 +49,8 @@ function getTests(prefix) {
             } else {
                 try {
                     const keys = data.Contents
-                    .filter(item => /summary-*\d*.json/.test(item.Key))
-                    .map(item => item.Key);
+                        .filter(item => /summary-*\d*.json/.test(item.Key))
+                        .map(item => item.Key);
     
                     const tests = await Promise.all(
                         keys.map(async key => {
@@ -173,8 +173,22 @@ async function begin() {
     // '2020-10-08-20-56-31'; // 40 usuários
     
     const parameters = {
-        categories: [ '1', '10', '20', '40' ],
-        folders: [ '2020-10-07-21-02-38', '2020-10-08-14-25-26', '2020-10-08-17-00-40', '2020-10-08-20-56-31' ]
+        categories: [
+            '1',
+            '10',
+            '20',
+            // '40',
+            '40',
+            '60'
+        ],
+        folders: [
+            '2020-10-07-21-02-38',
+            '2020-10-08-14-25-26',
+            '2020-10-08-17-00-40',
+            // '2020-10-08-20-56-31',
+            '2020-10-09-12-16-33',
+            '2020-10-09-14-35-59'
+        ]
     };
 
     const tests = await Promise.all(
@@ -192,7 +206,6 @@ async function begin() {
             }, {});
         })
     );
-
     
     const plots = tests
         .map(calcule)
