@@ -166,11 +166,53 @@ function calcule(tests) {
 
 }
 
+/**
+ * Calcule error
+ *
+ * @param {*} rs A
+ * @param {*} vs F
+ */
+function calculeError(rs, vs) {
+    // return (Math.log10(vs / rs) * 100);
+    return (Math.abs(vs - rs) / ( rs + vs )) * 100;
+}
+
+function buildErrors(plots, categories) {
+
+    const rs = plots['RS'];
+    const vs = plots['VS'];
+
+    const rsMed = rs.map(item => {
+        return percentile(50, item);
+    });
+
+    const vsMed = vs.map(item => {
+        return percentile(50, item);
+    });
+
+    const t = rsMed.map((item, index) => {
+        const rs = item;
+        const vs = vsMed[index];
+        return {
+            users: categories[index],
+            rs,
+            vs,
+            error: calculeError(rs, vs)
+        };
+    });
+
+    console.log(t);
+}
+
 async function begin() {
     // '2020-10-07-21-02-38'; // 1 usuários
     // '2020-10-08-14-25-26'; // 10 usuários
     // '2020-10-08-17-00-40'; // 20 usuários
     // '2020-10-08-20-56-31'; // 40 usuários
+    // '2020-10-09-12-16-33'; // 40 usuários
+    // '2020-10-09-14-35-59'; // 60 usuários
+    // '2020-10-09-16-43-34'; // 80 usuários
+    // '2020-10-09-19-07-49'; // 100 usuários
     
     const parameters = {
         categories: [
@@ -179,7 +221,9 @@ async function begin() {
             '20',
             // '40',
             '40',
-            '60'
+            '60',
+            '80',
+            '100'
         ],
         folders: [
             '2020-10-07-21-02-38',
@@ -187,7 +231,9 @@ async function begin() {
             '2020-10-08-17-00-40',
             // '2020-10-08-20-56-31',
             '2020-10-09-12-16-33',
-            '2020-10-09-14-35-59'
+            '2020-10-09-14-35-59',
+            '2020-10-09-16-43-34',
+            '2020-10-09-19-07-49'
         ]
     };
 
@@ -206,7 +252,7 @@ async function begin() {
             }, {});
         })
     );
-    
+
     const plots = tests
         .map(calcule)
         .map(item => {
@@ -222,6 +268,8 @@ async function begin() {
             result['RS'] = [... previous['RS'] || [], current['RS'][0]];
             return Object.assign({}, previous, result);
         }, {});
+
+    buildErrors(plots, parameters.categories);
 
     const series = buildSeries(plots);
     boxPlot(series, parameters.categories);
@@ -242,7 +290,7 @@ function boxPlot(series, categories) {
             },
             xAxis: {
                 categories: categories,
-                // gridLineWidth: 1,
+                gridLineWidth: 1,
                 title: {
                     text: 'No. Users'
                 }
