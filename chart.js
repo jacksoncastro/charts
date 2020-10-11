@@ -167,13 +167,22 @@ function calcule(tests) {
 }
 
 /**
+ * Calcule error with log
+ *
+ * @param {*} rs A
+ * @param {*} vs F
+ */
+function calculeErrorLog(rs, vs) {
+    return (Math.log10(vs / rs) * 100);
+}
+
+/**
  * Calcule error
  *
  * @param {*} rs A
  * @param {*} vs F
  */
 function calculeError(rs, vs) {
-    // return (Math.log10(vs / rs) * 100);
     return (Math.abs(vs - rs) / ( rs + vs )) * 100;
 }
 
@@ -190,18 +199,15 @@ function buildErrors(plots, categories) {
         return percentile(50, item);
     });
 
-    const t = rsMed.map((item, index) => {
+    return rsMed.map((item, index) => {
         const rs = item;
         const vs = vsMed[index];
         return {
             users: categories[index],
-            rs,
-            vs,
+            errorLog: calculeErrorLog(rs, vs),
             error: calculeError(rs, vs)
         };
     });
-
-    console.log(t);
 }
 
 async function begin() {
@@ -266,14 +272,84 @@ async function begin() {
             return Object.assign({}, previous, result);
         }, {});
 
-    buildErrors(plots, parameters.categories);
+    const errors = buildErrors(plots, parameters.categories);
+    chartError(errors);
 
-    const series = buildSeries(plots);
-    boxPlot(series, parameters.categories);
+    // const series = buildSeries(plots);
+    // boxPlot(series, parameters.categories);
+}
+
+function chartError(errors) {
+    const data = errors.reduce((previous, current) => {
+        const result = [];
+        result['errorLog'] = [...previous['errorLog'] || [], current.errorLog];
+        result['error'] = [...previous['error'] || [], current.error];
+        return Object.assign({}, previous, result);
+    }, {});
+
+    const series = Object.entries(data)
+        .map(([key, value]) => {
+            return {
+                name: key,
+                data: value
+            };
+        });
+
+    const categories = errors.map(error => error.users);
+
+    createSettingsError(categories, series);
+}
+
+function createSettingsError(categories, series) {
+    var settings = {
+        type: 'png',
+        options: {
+            title: {
+                text: 'Virtual Speedup Error'
+            },
+            credits: {
+                enabled: false
+            },
+            xAxis: {
+                title: {
+                    text: 'No. Users'
+                },
+                categories: categories
+            },
+            yAxis: {
+                title: {
+                    text: 'Percentil'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            series: series
+        }
+    };
+
+    exportChart(settings, '/tmp/chart-error.png');
+}
+
+function exportChart(settings, path) {
+
+    // Set up a pool of PhantomJS workers
+    exporter.initPool();
+
+    // Perform an export
+    exporter.export(settings, function (error, res) {
+        fs.writeFile(path, res.data, 'base64', function(err) {
+            // Kill the pool when we're done with it, and exit the application
+            exporter.killPool();
+            process.exit(1);
+        })
+    });
 }
 
 function boxPlot(series, categories) {
-    var exportSettings = {
+    var settings = {
         type: 'png',
         options: {
             chart: {
@@ -303,17 +379,7 @@ function boxPlot(series, categories) {
         }
     };
 
-    // Set up a pool of PhantomJS workers
-    exporter.initPool();
-
-    // Perform an export
-    exporter.export(exportSettings, function (error, res) {
-        fs.writeFile("/tmp/out.png", res.data, 'base64', function(err) {
-            // Kill the pool when we're done with it, and exit the application
-            exporter.killPool();
-            process.exit(1);
-        })
-    });
+    exportChart(settings, '/tmp/chart-speedup.png');
 }
 
 begin();
