@@ -62,7 +62,8 @@ function getTests(prefix) {
                             return {
                                 iteration: parseInt(matches[2]),
                                 key: matches[1],
-                                med: parse.metrics.iteration_duration.med
+                                med: parse.metrics.session_duration.med,
+                                rate: parse.metrics.http_reqs.rate
                             };
                         })
                     );
@@ -218,25 +219,49 @@ async function begin() {
     // '2020-10-09-14-35-59'; // 60 usuários
     // '2020-10-09-16-43-34'; // 80 usuários
     // '2020-10-09-19-07-49'; // 100 usuários
-    
+
+    // '2020-10-11-16-23-26'; // 10 usuários 10 rps 10 iterações
+    // '2020-10-11-17-21-59'; // 20 usuários 20 rps 20 iterações
+    // '2020-10-11-18-21-56'; // 40 usuários 40 rps 40 iterações
+
+    // '2020-10-12-18-44-40'; // 10 usuários 10 rps 10 iterações
+    // '2020-10-12-19-43-53'; // 20 usuários 20 rps 20 iterações
+    // '2020-10-12-20-42-40'; // 40 usuários 40 rps 40 iterações
+
     const parameters = {
         categories: [
-            '1',
+            // '1',
+            // '10',
+            // '20',
+            // '40',
+            // '60',
+            // '80',
+            // '100'
+
+            // '10',
+            // '20',
+            // '40'
+
             '10',
             '20',
-            '40',
-            '60',
-            '80',
-            '100'
+            '40'
         ],
         folders: [
-            '2020-10-07-21-02-38',
-            '2020-10-08-14-25-26',
-            '2020-10-08-17-00-40',
-            '2020-10-09-12-16-33',
-            '2020-10-09-14-35-59',
-            '2020-10-09-16-43-34',
-            '2020-10-09-19-07-49'
+            // '2020-10-07-21-02-38',
+            // '2020-10-08-14-25-26',
+            // '2020-10-08-17-00-40',
+            // '2020-10-09-12-16-33',
+            // '2020-10-09-14-35-59',
+            // '2020-10-09-16-43-34',
+            // '2020-10-09-19-07-49'
+
+            // '2020-10-11-16-23-26',
+            // '2020-10-11-17-21-59',
+            // '2020-10-11-18-21-56'
+
+            '2020-10-12-18-44-40',
+            '2020-10-12-19-43-53',
+            '2020-10-12-20-42-40'
         ]
     };
 
@@ -248,7 +273,7 @@ async function begin() {
 
             return iterations.reduce((previous, current) => {
                 const result = [];
-                const item = { key: current.key, med: current.med };
+                const item = { key: current.key, med: current.med, rate: current.rate };
                 result[current.iteration] = [...previous[current.iteration] || [], item];
     
                 return Object.assign({}, previous, result);
@@ -272,11 +297,72 @@ async function begin() {
             return Object.assign({}, previous, result);
         }, {});
 
+    const tt = tests.map(test => {
+        return Object.values(test)
+            .map((value) => {
+                return value.reduce((previous, current) => {
+                    const result = [];
+                    result[current.key] = [...previous[current.key] || [], current.rate]
+                    return Object.assign({}, previous, result);
+                }, {})
+            });
+    });
+
+    const xxx = tt.map(item => {
+        const data = item.reduce((previous, current) => {
+            const result = [];
+            result['NT'] = [...previous['NT'] || [], current['NT'][0]]
+            result['AT'] = [...previous['AT'] || [], current['AT'][0]]
+            result['DT'] = [...previous['DT'] || [], current['DT'][0]]
+            result['DTSi'] = [...previous['DTSi'] || [], current['DTSi'][0]]
+            return Object.assign({}, previous, result);
+        }, {});
+
+        return Object.entries(data)
+            .map(([key, value]) => {
+                const sort = value.sort();
+                const min = sort[0];
+                const max = sort[sort.length - 1];
+                const quartis = percentile([ 25, 50, 75 ], value);
+                return {
+                    [key]: [ min, ...quartis, max ]
+                };
+            })
+            .reduce((previous, current) => {
+                return Object.assign({}, previous, current);
+            }, {});
+    })
+    .reduce((previous, current) => {
+        const result = [];
+        result['NT'] = [...previous['NT'] || [], current['NT']]
+        result['AT'] = [...previous['AT'] || [], current['AT']]
+        result['DT'] = [...previous['DT'] || [], current['DT']]
+        result['DTSi'] = [...previous['DTSi'] || [], current['DTSi']]
+        return Object.assign({}, previous, result);
+    }, {});
+
+    // const rates = buildRates(xxx);
+    // boxRate(rates, parameters.categories);
+
     const errors = buildErrors(plots, parameters.categories);
     chartError(errors);
 
     // const series = buildSeries(plots);
     // boxPlot(series, parameters.categories);
+}
+
+function buildRates(plots) {
+    return Object.entries(plots)
+        .map(([key, data]) => {
+        return {
+            name: key,
+            // color: '#7cb5ec',
+            data: data,
+            tooltip: {
+                headerFormat: '<em>Users No. {point.key}</em><br/>'
+            }
+        };
+    });
 }
 
 function chartError(errors) {
@@ -319,7 +405,10 @@ function createSettingsError(categories, series) {
             yAxis: {
                 title: {
                     text: 'Percentil'
-                }
+                },
+                tickInterval: 20,
+                min: -100,
+                max: 100
             },
             legend: {
                 layout: 'vertical',
@@ -348,6 +437,41 @@ function exportChart(settings, path) {
     });
 }
 
+function boxRate(series, categories) {
+    var settings = {
+        type: 'png',
+        options: {
+            chart: {
+                type: 'boxplot'
+            },
+            title: {
+                text: 'Virtual Speedup Rate'
+            },
+            credits: {
+                enabled: false
+            },
+            xAxis: {
+                categories: categories,
+                gridLineWidth: 1,
+                title: {
+                    // text: 'No. Users'
+                    text: 'RPS (expected)'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'RPS (actual)'
+                },
+                min: 0,
+                max: 60
+            },
+            series: series
+        }
+    };
+
+    exportChart(settings, '/tmp/chart-rate.png');
+}
+
 function boxPlot(series, categories) {
     var settings = {
         type: 'png',
@@ -365,7 +489,8 @@ function boxPlot(series, categories) {
                 categories: categories,
                 gridLineWidth: 1,
                 title: {
-                    text: 'No. Users'
+                    // text: 'No. Users'
+                    text: 'Rate'
                 }
             },
             yAxis: {
