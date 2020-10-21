@@ -2,6 +2,10 @@ import Chart from './chart';
 import { Parameter } from './interfaces';
 
 const parameters: Parameter[] = [
+    // {
+    //     category: '1',
+    //     folder: '2020-10-17-16-09-25'
+    // },
     {
         category: '20',
         folder: '2020-10-19-17-57-32'
@@ -13,6 +17,10 @@ const parameters: Parameter[] = [
     {
         category: '60',
         folder: '2020-10-20-16-16-05'
+    },
+    {
+        category: '80',
+        folder: '2020-10-20-19-48-26'
     },
 ];
 

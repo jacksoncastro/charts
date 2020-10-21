@@ -6,7 +6,8 @@ import {
     Metrics,
     KeyValue,
     Groups,
-    SpeedupRealVirtual
+    SpeedupRealVirtual,
+    VirtualSpeedupRate
 } from './';
 
 const SUMMARY_JSON_PATTERN = /summary-*\d*.json/;
@@ -42,19 +43,6 @@ class Chart {
 
             const metrics = this.getMetrics(current.summaries);
 
-            // const iterations = this.getIterations(metrics);
-
-            // const speedups = this.getSpeedups(iterations);
-
-            // const plotSpeedups = this.getPlotSpeedups(speedups);
-
-            // const rpss = this.getRPSs(metrics);
-
-            // const data = {
-            //     speedups: plotSpeedups,
-            //     rpss
-            // };
-
             previous[current.category] = metrics;
             return previous;
         }, {});
@@ -65,20 +53,9 @@ class Chart {
     private charts(groups: Groups) {
         const categories = this.parameters.map(parameter => parameter.category);
         const speedupRealVirtual = new SpeedupRealVirtual(groups, this.parameters, categories);
-        speedupRealVirtual.generate();
-    }
-
-    private getRPSs(metrics: Metrics[]): {[key: string]: number[]} {
-        const group: {[key: string]: number[]} = metrics.reduce((previous, current) => {
-            previous[current.key] = [...previous[current.key] || [], current.rps];
-            return previous;
-        }, {});
-
-        return Object.entries(group)
-            .reduce((previous, [key, value]) => {
-                previous[key] = Functions.getPlot(value);
-                return previous;
-            }, {});
+        const virtualSpeedupRate = new VirtualSpeedupRate(groups, this.parameters, categories);
+        // speedupRealVirtual.generate();
+        virtualSpeedupRate.generate();
     }
 
     private async getFiles(): Promise<{category: string, files: string[]}[]> {
@@ -127,59 +104,6 @@ class Chart {
             };
         });
     }
-
-    // private getMetricsGroup(summaries: KeyValue<string>[]): MetricsGroup[] {
-
-    //     return summaries.map(summary => {
-
-    //         const matches = summary.key.match(SUMMARY_PATTERN);
-    //         const parse = JSON.parse(summary.value);
-
-    //         return {
-    //             key: matches[1],
-    //             iteration: parse.metrics.session_duration.med,
-    //             rps: parse.metrics.http_reqs.rate
-    //         };
-    //     })
-    //     .reduce((previous, current) => {
-    //         const key = current.key;
-    //         delete current.key;
-    //         previous[key] = [...previous[key] || [], current];
-    //         return previous;
-    //     }, []);
-    // }
-
-    // private getPlots(metricsGroup: MetricsGroup[]): Plot[] {
-    //     const entries = Object.entries(metricsGroup);
-    //     entries.reduce((previous, [key, metrics]) => {
-    //         console.log(metrics)
-    //         return previous;
-    //     }, []);
-
-    //     return entries
-    //             .reduce((previous, [key, metrics]) => {
-    //                 if (metrics instanceof Array) {
-
-    //                     const iterations = this.extractItem(metrics, 'iteration');
-    //                     const rps = this.extractItem(metrics, 'rps');
-
-    //                     previous[key] = {
-    //                         iteration: this.getPlot(iterations),
-    //                         rps: this.getPlot(rps)
-    //                     };
-
-    //                     return previous;
-    //                 }
-    //                 throw new Error('No array found');
-    //             }, []);
-    // }
-
-    // private extractItem(data: any[], item: string) {
-    //     return data.reduce((previous, current) => {
-    //         previous.push(current[item]);
-    //         return previous;
-    //     }, []);
-    // }
 }
 
 export default Chart;
