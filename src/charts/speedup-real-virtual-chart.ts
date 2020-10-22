@@ -1,10 +1,10 @@
 import BaseChart from './base-chart';
 import Functions from '../functions';
+import Constants from '../constants';
 
 import {
     Metrics,
     Iteration,
-    Constants,
     Speedup
 } from '..';
 

@@ -22,6 +22,14 @@ const parameters: Parameter[] = [
         category: '80',
         folder: '2020-10-20-19-48-26'
     },
+    {
+        category: '100',
+        folder: '2020-10-21-12-14-36'
+    },
+    {
+        category: '120',
+        folder: '2020-10-21-16-16-18'
+    },
 ];
 
 const chart = new Chart(parameters);

@@ -1,4 +1,4 @@
-export class Constants {
+export default class Constants {
 
     private constructor() {}
 

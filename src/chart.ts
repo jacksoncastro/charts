@@ -1,5 +1,4 @@
 import S3Bucket from './s3-singleton';
-import Functions from './functions';
 
 import {
     Parameter,
@@ -7,7 +6,8 @@ import {
     KeyValue,
     Groups,
     SpeedupRealVirtual,
-    VirtualSpeedupRate
+    VirtualSpeedupRate,
+    VirtualSpeedupError
 } from './';
 
 const SUMMARY_JSON_PATTERN = /summary-*\d*.json/;
@@ -54,8 +54,11 @@ class Chart {
         const categories = this.parameters.map(parameter => parameter.category);
         const speedupRealVirtual = new SpeedupRealVirtual(groups, this.parameters, categories);
         const virtualSpeedupRate = new VirtualSpeedupRate(groups, this.parameters, categories);
+        const virtualSpeedupError = new VirtualSpeedupError(groups, this.parameters, categories);
+
         // speedupRealVirtual.generate();
-        virtualSpeedupRate.generate();
+        // virtualSpeedupRate.generate();
+        virtualSpeedupError.generate();
     }
 
     private async getFiles(): Promise<{category: string, files: string[]}[]> {

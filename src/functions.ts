@@ -16,6 +16,26 @@ export default class Functions {
         }
     }
 
+    /**
+     * Calcule error with log
+     *
+     * @param {*} rs A
+     * @param {*} vs F
+     */
+    public static calculeErrorLog(rs: number, vs: number): number {
+        return (Math.log10(vs / rs) * 100);
+    }
+
+    /**
+     * Calcule error
+     *
+     * @param {*} rs A
+     * @param {*} vs F
+     */
+    public static calculeError(rs: number, vs: number): number {
+        return (Math.abs(vs - rs) / ( rs + vs )) * 100;
+    }
+
     public static getPlot(data: number[]) {
 
         const sort = data.sort();
@@ -28,6 +48,10 @@ export default class Functions {
             return [ min, ...quartis, max ];
         }
         throw new Error('No array found');
+    }
+
+    public static getMedian(data: number[]) {
+        return percentile([ 50 ], data);
     }
 
     public static group(array: any[]): {[key: string]: []} {

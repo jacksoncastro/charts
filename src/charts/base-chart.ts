@@ -45,7 +45,7 @@ export default abstract class BaseChart {
 
         const path = `/tmp/${this.getName()}.png`;
         const base64 = await this.exportChart(settings);
-        this.saveFile(base64, path);
+        await this.saveFile(base64, path);
 
     }
 
@@ -64,11 +64,14 @@ export default abstract class BaseChart {
         });
     }
 
-    private saveFile(base64: string, path: string): void {
-        fs.writeFile(path, base64, 'base64', (error) => {
-            if (error) {
-                throw error;
-            }
-        })
+    private saveFile(base64: string, path: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            fs.writeFile(path, base64, 'base64', (error) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve();
+            })
+        });
     }
 }
