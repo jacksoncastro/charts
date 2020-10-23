@@ -8,7 +8,7 @@ export class VirtualSpeedupError extends BaseChart {
         return 'virtual-speedup-error';
     }
 
-    public generate(): void {
+    public generate(): Promise<void> {
         const groups = Object.values(this.groups).reduce((previous, values) => {
             const errors = values.reduce((p, current) => {
                 p[current.key] = [...p[current.key] || [], current.iteration];
@@ -20,7 +20,7 @@ export class VirtualSpeedupError extends BaseChart {
                 && errors[Constants.DT]
                 && errors[Constants.DTS]) {
 
-                const x = errors[Constants.NT].reduce((p, current, index: number) => {
+                const items = errors[Constants.NT].reduce((p, current, index: number) => {
 
                     const rs = Functions.calculeRS(current, errors[Constants.ATS][index]);
                     const vs = Functions.calculeVS(current, errors[Constants.DT][index], errors[Constants.DTS][index]);
@@ -43,7 +43,7 @@ export class VirtualSpeedupError extends BaseChart {
                     return p;
                 }, {});
 
-                Object.entries(x).forEach(([key, value]) => {
+                Object.entries(items).forEach(([key, value]) => {
                     if (value instanceof Array) {
                         previous[key] = [...previous[key] || [], Functions.getMedian(value)];
                     }
@@ -55,7 +55,7 @@ export class VirtualSpeedupError extends BaseChart {
 
         const series = this.buildSeries(groups);
 
-        this.buildChart(series);
+        return this.buildChart(series);
     }
 
     protected getOptions(series: {[key: string]: number[]}): {} {

@@ -14,7 +14,7 @@ export class SpeedupRealVirtual extends BaseChart {
         return 'speedup-real-virtual';
     }
 
-    public generate(): void {
+    public generate(): Promise<void> {
 
         const data = Object.entries(this.groups).reduce((previous, [key, metrics]) => {
 
@@ -40,7 +40,7 @@ export class SpeedupRealVirtual extends BaseChart {
 
         const series = this.buildSeries(plots);
 
-        this.buildChart(series);
+        return this.buildChart(series);
     }
 
     protected getOptions(series: {[key: string]: number[]}): {} {

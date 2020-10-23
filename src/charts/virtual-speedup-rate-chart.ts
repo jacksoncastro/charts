@@ -7,7 +7,7 @@ export class VirtualSpeedupRate extends BaseChart {
         return 'virtual-speedup-rate';
     }
 
-    public generate(): void {
+    public generate(): Promise<void> {
         const groups = Object.values(this.groups).reduce((previous, value) => {
             const rpss = value.reduce((p, current) => {
                 p[current.key] = [...p[current.key] || [], current.rps];
@@ -25,7 +25,7 @@ export class VirtualSpeedupRate extends BaseChart {
 
         const series = this.buildSeries(groups);
 
-        this.buildChart(series);
+        return this.buildChart(series);
     }
 
     protected getOptions(series: {[key: string]: number[]}): {} {

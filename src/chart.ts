@@ -50,15 +50,22 @@ class Chart {
         this.charts(groups);
     }
 
-    private charts(groups: Groups) {
+    private async charts(groups: Groups) {
+
         const categories = this.parameters.map(parameter => parameter.category);
         const speedupRealVirtual = new SpeedupRealVirtual(groups, this.parameters, categories);
         const virtualSpeedupRate = new VirtualSpeedupRate(groups, this.parameters, categories);
         const virtualSpeedupError = new VirtualSpeedupError(groups, this.parameters, categories);
 
-        // speedupRealVirtual.generate();
-        // virtualSpeedupRate.generate();
-        virtualSpeedupError.generate();
+        const charts = [
+            speedupRealVirtual,
+            virtualSpeedupRate,
+            virtualSpeedupError
+        ];
+
+        for (const chart of charts) {
+            await chart.generate();
+        }
     }
 
     private async getFiles(): Promise<{category: string, files: string[]}[]> {

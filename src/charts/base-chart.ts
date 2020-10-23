@@ -16,7 +16,7 @@ export default abstract class BaseChart {
         this.categories = categories;
     }
 
-    public abstract generate(): void;
+    public abstract generate(): Promise<void>;
 
     protected abstract getName(): string;
 
@@ -34,7 +34,7 @@ export default abstract class BaseChart {
         });
     }
 
-    protected async buildChart(series: {}) {
+    protected async buildChart(series: {}): Promise<void> {
 
         const options = this.getOptions(series);
 
@@ -45,7 +45,7 @@ export default abstract class BaseChart {
 
         const path = `/tmp/${this.getName()}.png`;
         const base64 = await this.exportChart(settings);
-        await this.saveFile(base64, path);
+        return this.saveFile(base64, path);
 
     }
 
