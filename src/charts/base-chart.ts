@@ -1,4 +1,5 @@
-import fs from 'fs';
+import arraySort from 'array-sort';
+import Functions from '../functions';
 import exporter from 'highcharts-export-server';
 
 import { Groups, Parameter } from '..';
@@ -45,7 +46,7 @@ export default abstract class BaseChart {
 
         const path = `/tmp/${this.getName()}.png`;
         const base64 = await this.exportChart(settings);
-        return this.saveFile(base64, path);
+        return Functions.saveFile(base64, path);
 
     }
 
@@ -64,14 +65,23 @@ export default abstract class BaseChart {
         });
     }
 
-    private saveFile(base64: string, path: string): Promise<void> {
-        return new Promise((resolve, reject) => {
-            fs.writeFile(path, base64, 'base64', (error) => {
-                if (error) {
-                    reject(error);
-                }
-                resolve();
-            })
-        });
+    protected buildCSV(series: {}) {
+        const data = Object.entries(series).reduce((previous, [key, values]) => {
+            if (values instanceof Array) {
+                const items = values.map((value, index) => {
+                    return {
+                        category: this.categories[index],
+                        type: key,
+                        value: (value instanceof Array) ? Functions.getMedian(value): value
+                    };
+                });
+
+                return [...previous, ...items];
+            }
+        }, []);
+
+        const sorted = arraySort(data, ['category', 'type']);
+
+        Functions.saveFileCSV(sorted, `/tmp/${this.getName()}.csv`)
     }
 }

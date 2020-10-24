@@ -23,6 +23,8 @@ export class VirtualSpeedupRate extends BaseChart {
             return previous;
         }, {});
 
+        this.buildCSV(groups);
+
         const series = this.buildSeries(groups);
 
         return this.buildChart(series);

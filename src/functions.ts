@@ -1,3 +1,5 @@
+import fs from 'fs';
+import { parse } from 'json2csv';
 import percentile from 'percentile';
 
 export default class Functions {
@@ -65,5 +67,21 @@ export default class Functions {
             })
         })
         return result;
+    }
+
+    public static saveFile(base64: string, path: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            fs.writeFile(path, base64, 'base64', (error) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve();
+            })
+        });
+    }
+
+    public static saveFileCSV(data: {}, path: string): void {
+        const csv = parse(data);
+        fs.writeFileSync(path, csv , 'utf-8');
     }
 }

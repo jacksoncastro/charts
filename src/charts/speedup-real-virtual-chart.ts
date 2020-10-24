@@ -1,3 +1,4 @@
+import arraySort from 'array-sort';
 import BaseChart from './base-chart';
 import Functions from '../functions';
 import Constants from '../constants';
@@ -37,6 +38,8 @@ export class SpeedupRealVirtual extends BaseChart {
                 });
             return previous;
         }, {});
+
+        this.buildCSV(plots);
 
         const series = this.buildSeries(plots);
 

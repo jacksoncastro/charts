@@ -1,3 +1,4 @@
+import arraySort from 'array-sort';
 import BaseChart from './base-chart';
 import Functions from '../functions';
 import Constants from '../constants';
@@ -52,6 +53,8 @@ export class VirtualSpeedupError extends BaseChart {
 
             return previous;
         }, {});
+
+        this.buildCSV(groups);
 
         const series = this.buildSeries(groups);
 
