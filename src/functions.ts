@@ -8,24 +8,14 @@ export default class Functions {
 
     public static calculeRS(nt: number, ats: number): number {
         if (nt && ats) {
-            return (nt - ats) / nt;
+            return ats / nt;
         }
     }
 
     public static calculeVS(nt: number, dt: number, dts: number): number {
         if (nt && dt && dts) {
-            return (dt - dts) / nt;
+            return (nt - (dt - dts)) / nt;
         }
-    }
-
-    /**
-     * Calcule error with log
-     *
-     * @param {*} rs A
-     * @param {*} vs F
-     */
-    public static calculeErrorLog(rs: number, vs: number): number {
-        return (Math.log10(vs / rs) * 100);
     }
 
     /**
@@ -35,7 +25,7 @@ export default class Functions {
      * @param {*} vs F
      */
     public static calculeError(rs: number, vs: number): number {
-        return (Math.abs(vs - rs) / ( rs + vs )) * 100;
+        return (Math.log10(vs / rs) * 100);
     }
 
     public static getPlot(data: number[]) {
