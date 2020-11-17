@@ -23,8 +23,6 @@ export class VirtualSpeedupRate extends BaseChart {
             return previous;
         }, {});
 
-        this.buildCSV(groups);
-
         const series = this.buildSeries(groups);
 
         return this.buildChart(series);
@@ -36,7 +34,7 @@ export class VirtualSpeedupRate extends BaseChart {
                 type: 'boxplot'
             },
             title: {
-                text: 'Virtual Speedup Rate'
+                text: 'Virtual Speedup Session'
             },
             credits: {
                 enabled: false
@@ -51,7 +49,7 @@ export class VirtualSpeedupRate extends BaseChart {
             },
             yAxis: {
                 title: {
-                    text: 'RPS (actual)'
+                    text: 'Session (actual)'
                 },
                 // min: 0,
                 // max: 60

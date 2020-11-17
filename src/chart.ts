@@ -1,5 +1,7 @@
 import S3Bucket from './s3-singleton';
 
+import CSVExporter from './csv-exporter'
+
 import {
     Parameter,
     Metrics,
@@ -56,6 +58,7 @@ class Chart {
         const speedupRealVirtual = new SpeedupRealVirtual(groups, this.parameters, categories);
         const virtualSpeedupRate = new VirtualSpeedupRate(groups, this.parameters, categories);
         const virtualSpeedupError = new VirtualSpeedupError(groups, this.parameters, categories);
+        const csvExporter = new CSVExporter(groups);
 
         const charts = [
             speedupRealVirtual,
@@ -66,6 +69,8 @@ class Chart {
         for (const chart of charts) {
             await chart.generate();
         }
+
+        // csvExporter.generate();
     }
 
     private async getFiles(): Promise<{category: string, files: string[]}[]> {
@@ -110,7 +115,7 @@ class Chart {
                 key: matches[1],
                 round: parseInt(matches[2], 10),
                 iteration: parse.metrics.session_duration.med,
-                rps: parse.metrics.http_reqs.rate
+                rps: parse.metrics.session_duration.med
             };
         });
     }

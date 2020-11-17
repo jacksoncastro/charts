@@ -1,4 +1,3 @@
-import arraySort from 'array-sort';
 import BaseChart from './base-chart';
 import Functions from '../functions';
 import Constants from '../constants';
@@ -26,20 +25,9 @@ export class VirtualSpeedupError extends BaseChart {
                     const rs = Functions.calculeRS(current, errors[Constants.ATS][index]);
                     const vs = Functions.calculeVS(current, errors[Constants.DT][index], errors[Constants.DTS][index]);
 
-                    const rsLimited = Functions.calculeRS(current, errors[Constants.ATS_LIMITED][index]);
-                    const vsLimited = Functions.calculeVS(current, errors[Constants.DT][index], errors[Constants.DTS_LIMITED][index]);
-
                     const error = Functions.calculeError(rs, vs);
-                    const errorLog = Functions.calculeErrorLog(rs, vs);
-
-                    const errorLimited = Functions.calculeError(rsLimited, vsLimited);
-                    const errorLogLimited = Functions.calculeErrorLog(rsLimited, vsLimited);
 
                     p.error = [...p.error || [], error];
-                    p.errorLog = [...p.errorLog || [], errorLog];
-
-                    p.errorLimited = [...p.errorLimited || [], errorLimited];
-                    p.errorLogLimited = [...p.errorLogLimited || [], errorLogLimited];
 
                     return p;
                 }, {});
@@ -53,8 +41,6 @@ export class VirtualSpeedupError extends BaseChart {
 
             return previous;
         }, {});
-
-        this.buildCSV(groups);
 
         const series = this.buildSeries(groups);
 
@@ -79,8 +65,9 @@ export class VirtualSpeedupError extends BaseChart {
                 title: {
                     text: 'Percentil'
                 },
-                min: -100,
-                max: 100
+                tickInterval: 2,
+                min: -20,
+                max: 20
             },
             legend: {
                 layout: 'vertical',

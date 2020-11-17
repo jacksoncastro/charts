@@ -1,4 +1,3 @@
-import arraySort from 'array-sort';
 import BaseChart from './base-chart';
 import Functions from '../functions';
 import Constants from '../constants';
@@ -21,6 +20,27 @@ export class SpeedupRealVirtual extends BaseChart {
 
             const iterations = this.getIterations(metrics);
 
+            const x = iterations.reduce((p, current) => {
+                current.forEach(item => {
+                    p[item.key] = [...p[item.key] || [], item.iteration];
+                })
+                return p;
+            }, {});
+
+            const y = Object.entries(x).reduce((p, [k, v]) => {
+                if (v instanceof Array) {
+                    p[k] = Functions.getMedian(v);
+                }
+                return p;
+            }, {});
+
+            const nt: number = y[Constants.NT];
+            const ats: number = y[Constants.ATS];
+            const dt: number = y[Constants.DT];
+            const dts: number = y[Constants.DTS];
+
+            this.print(key, y, nt, ats, dt, dts);
+
             const speedups = this.getSpeedups(iterations);
 
             const plotSpeedups = this.getPlotSpeedups(speedups);
@@ -39,11 +59,36 @@ export class SpeedupRealVirtual extends BaseChart {
             return previous;
         }, {});
 
-        this.buildCSV(plots);
-
         const series = this.buildSeries(plots);
 
         return this.buildChart(series);
+    }
+
+    private print(key: string, y, nt: number, ats: number, dt: number, dts: number) {
+
+        console.log('------', key);
+        console.table(y);
+
+        console.log(`rs = ats / nt`);
+        console.log(`rs = ${ats} / ${nt}`);
+        const rs = ats / nt;
+        console.log(`rs = ${rs}`);
+
+        console.log();
+
+        console.log(`vs = (nt - (dt - dts)) / nt`);
+        console.log(`vs = (${nt} - (${dt} - ${dts})) / ${nt}`);
+
+        const vs = (nt - (dt - dts)) / nt;
+        console.log(`vs = ${vs}`)
+
+        console.log();
+
+        console.log(`Error = log(vs / rs) * 100`);
+        console.log(`Error = log(${vs} / ${rs}) * 100`);
+        console.log(`Error =`, Math.log(vs / rs) * 100);
+
+        console.log();
     }
 
     protected getOptions(series: {[key: string]: number[]}): {} {
@@ -96,30 +141,14 @@ export class SpeedupRealVirtual extends BaseChart {
             const ats = this.getIterationByKey(metric, Constants.ATS);
             const dt = this.getIterationByKey(metric, Constants.DT);
             const dts = this.getIterationByKey(metric, Constants.DTS);
-            const atsLimited = this.getIterationByKey(metric, Constants.ATS_LIMITED);
-            const dtsLimited = this.getIterationByKey(metric, Constants.DTS_LIMITED);
 
             const rs = Functions.calculeRS(nt, ats);
             const vs = Functions.calculeVS(nt, dt, dts);
 
-            const rsLimeted = Functions.calculeRS(nt, atsLimited);
-            const vsLimeted = Functions.calculeVS(nt, dt, dtsLimited);
-
-            const data = {
+            return {
                 rs,
                 vs
             };
-
-            if (vsLimeted && rsLimeted) {
-                Object.assign(
-                    data, {
-                        'vs (limited)': vsLimeted,
-                        'rs (limited)': rsLimeted
-                    }
-                );
-            }
-
-            return data;
         });
     }
 

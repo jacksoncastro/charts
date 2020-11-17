@@ -25,7 +25,7 @@ export default class Functions {
      * @param {*} vs F
      */
     public static calculeError(rs: number, vs: number): number {
-        return (Math.log10(vs / rs) * 100);
+        return (Math.log(vs / rs) * 100);
     }
 
     public static getPlot(data: number[]) {
