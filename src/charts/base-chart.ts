@@ -3,6 +3,7 @@ import Functions from '../functions';
 import exporter from 'highcharts-export-server';
 
 import { Groups, Parameter } from '..';
+import Constants from '../constants';
 
 
 export default abstract class BaseChart {
@@ -21,26 +22,50 @@ export default abstract class BaseChart {
 
     protected abstract getName(): string;
 
-    protected abstract getOptions(series: {[key: string]: number[]}): {};
+    protected abstract getOptions(series: {}[]): {};
 
-    protected buildSeries(plots: {}) {
-        return Object.entries(plots)
-            .sort(([first], [second]) => first.localeCompare(second))
-            .map(([key, data]) => {
+    protected buildSeries(plots: {}, order: string[]) {
+        const series = Object.entries(plots).map(([name, data]) => {
+            if (name === Constants.OUTLIERS) {
+                return {
+                    name,
+                    showInLegend: false,
+                    type: 'scatter',
+                    marker: {
+                        fillColor: 'transparent',
+                        lineWidth: 1,
+                        lineColor: 'red',
+                        radius: 2
+                    },
+                    data
+                };
+            }
+
+            if (name === Constants.AGGREGATE) {
+                return {
+                    name,
+                    color: '#492970',
+                    type: 'spline',
+                    data
+                };
+            }
+
             return {
-                name: key,
-                // color: '#7cb5ec',
+                name,
                 data
             };
         });
+        return Functions.sortByArray(series, order, 'name');
     }
 
-    protected async buildChart(series: {}): Promise<void> {
+    protected async buildChart(series: {}[]): Promise<void> {
 
         const options = this.getOptions(series);
 
         const settings = {
             type: 'png',
+            // sourceHeight: 1,
+            scale: 5,
             options
         };
 

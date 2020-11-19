@@ -1,5 +1,6 @@
 import BaseChart from './base-chart';
 import Functions from '../functions';
+import Constants from '../constants';
 
 export class VirtualSpeedupRate extends BaseChart {
 
@@ -23,12 +24,12 @@ export class VirtualSpeedupRate extends BaseChart {
             return previous;
         }, {});
 
-        const series = this.buildSeries(groups);
+        const series = this.buildSeries(groups, [ Constants.NT, Constants.ATS, Constants.DT, Constants.DTS ]);
 
         return this.buildChart(series);
     }
 
-    protected getOptions(series: {[key: string]: number[]}): {} {
+    protected getOptions(series: {}[]): {} {
         return {
             chart: {
                 type: 'boxplot'
@@ -45,6 +46,11 @@ export class VirtualSpeedupRate extends BaseChart {
                 title: {
                     text: 'No. Users'
                     // text: 'RPS (expected)'
+                },
+                labels: {
+                    style: {
+                        fontSize: '6px'
+                    }
                 }
             },
             yAxis: {

@@ -297,30 +297,30 @@ const parameters: Parameter[] = [
         category: 'frontend-DELAY-75-USERS-100-ITER-100',
         folder: 'frontend-DELAY-75-USERS-100-ITER-100'
     },
-    // {
-    //     category: 'frontend-DELAY-25-USERS-150-ITER-150',
-    //     folder: 'frontend-DELAY-25-USERS-150-ITER-150'
-    // },
-    // {
-    //     category: 'frontend-DELAY-50-USERS-150-ITER-150',
-    //     folder: 'frontend-DELAY-50-USERS-150-ITER-150'
-    // },
-    // {
-    //     category: 'frontend-DELAY-75-USERS-150-ITER-150',
-    //     folder: 'frontend-DELAY-75-USERS-150-ITER-150'
-    // },
-    // {
-    //     category: 'frontend-DELAY-25-USERS-200-ITER-200',
-    //     folder: 'frontend-DELAY-25-USERS-200-ITER-200'
-    // },
-    // {
-    //     category: 'frontend-DELAY-50-USERS-200-ITER-200',
-    //     folder: 'frontend-DELAY-50-USERS-200-ITER-200'
-    // },
-    // {
-    //     category: 'frontend-DELAY-75-USERS-200-ITER-200',
-    //     folder: 'frontend-DELAY-75-USERS-200-ITER-200'
-    // }
+    {
+        category: 'frontend-DELAY-25-USERS-150-ITER-150',
+        folder: 'frontend-DELAY-25-USERS-150-ITER-150'
+    },
+    {
+        category: 'frontend-DELAY-50-USERS-150-ITER-150',
+        folder: 'frontend-DELAY-50-USERS-150-ITER-150'
+    },
+    {
+        category: 'frontend-DELAY-75-USERS-150-ITER-150',
+        folder: 'frontend-DELAY-75-USERS-150-ITER-150'
+    },
+    {
+        category: 'frontend-DELAY-25-USERS-200-ITER-200',
+        folder: 'frontend-DELAY-25-USERS-200-ITER-200'
+    },
+    {
+        category: 'frontend-DELAY-50-USERS-200-ITER-200',
+        folder: 'frontend-DELAY-50-USERS-200-ITER-200'
+    },
+    {
+        category: 'frontend-DELAY-75-USERS-200-ITER-200',
+        folder: 'frontend-DELAY-75-USERS-200-ITER-200'
+    }
 
     // {
     //     category: 'recommendationservice-DELAY-25-USERS-50-ITER-50',
@@ -370,6 +370,55 @@ const parameters: Parameter[] = [
     //     category: 'recommendationservice-DELAY-75-USERS-200-ITER-200',
     //     folder: 'recommendationservice-DELAY-75-USERS-200-ITER-200'
     // }
+
+    // {
+    //     category: 'checkoutservice-DELAY-25-USERS-50-ITER-50',
+    //     folder: 'checkoutservice-DELAY-25-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-50-USERS-50-ITER-50',
+    //     folder: 'checkoutservice-DELAY-50-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-75-USERS-50-ITER-50',
+    //     folder: 'checkoutservice-DELAY-75-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-25-USERS-100-ITER-100',
+    //     folder: 'checkoutservice-DELAY-25-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-50-USERS-100-ITER-100',
+    //     folder: 'checkoutservice-DELAY-50-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-75-USERS-100-ITER-100',
+    //     folder: 'checkoutservice-DELAY-75-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-25-USERS-150-ITER-150',
+    //     folder: 'checkoutservice-DELAY-25-USERS-150-ITER-150'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-50-USERS-150-ITER-150',
+    //     folder: 'checkoutservice-DELAY-50-USERS-150-ITER-150'
+    // },
+    // {
+    //     category: 'checkoutservice-DELAY-75-USERS-150-ITER-150',
+    //     folder: 'checkoutservice-DELAY-75-USERS-150-ITER-150'
+    // },
+    // // {
+    // //     category: 'checkoutservice-DELAY-25-USERS-200-ITER-200',
+    // //     folder: 'checkoutservice-DELAY-25-USERS-200-ITER-200'
+    // // },
+    // // {
+    // //     category: 'checkoutservice-DELAY-50-USERS-200-ITER-200',
+    // //     folder: 'checkoutservice-DELAY-50-USERS-200-ITER-200'
+    // // },
+    // // {
+    // //     category: 'checkoutservice-DELAY-75-USERS-200-ITER-200',
+    // //     folder: 'checkoutservice-DELAY-75-USERS-200-ITER-200'
+    // // }
 ];
 
 const chart = new Chart(parameters);

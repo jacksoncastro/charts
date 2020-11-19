@@ -59,7 +59,7 @@ export class SpeedupRealVirtual extends BaseChart {
             return previous;
         }, {});
 
-        const series = this.buildSeries(plots);
+        const series = this.buildSeries(plots, ['rs', 'vs']);
 
         return this.buildChart(series);
     }
@@ -91,7 +91,7 @@ export class SpeedupRealVirtual extends BaseChart {
         console.log();
     }
 
-    protected getOptions(series: {[key: string]: number[]}): {} {
+    protected getOptions(series: {}[]): {} {
         return {
             chart: {
                 type: 'boxplot'
@@ -108,6 +108,11 @@ export class SpeedupRealVirtual extends BaseChart {
                 title: {
                     // text: 'No. Users'
                     text: 'Rate'
+                },
+                labels: {
+                    style: {
+                        fontSize: '6px'
+                    }
                 }
             },
             yAxis: {

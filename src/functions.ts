@@ -1,3 +1,4 @@
+import { BoxPLot } from './';
 import fs from 'fs';
 import { parse } from 'json2csv';
 import percentile from 'percentile';
@@ -73,5 +74,36 @@ export default class Functions {
     public static saveFileCSV(data: {}, path: string): void {
         const csv = parse(data);
         fs.writeFileSync(path, csv , 'utf-8');
+    }
+
+    public static getBoxPlot(data: number[]): BoxPLot {
+
+        const percentiles = percentile([ 25, 50, 75 ], data);
+        const q1 = percentiles[0];
+        const median = percentiles[1];
+        const q3 = percentiles[2];
+
+        const iqr = q3 - q1;
+        const min = q1 - (iqr * 1.5);
+        const max = q3 + (iqr * 1.5);
+
+        const outliers = data.filter(value => value < min || value > max);
+
+        return {
+            min,
+            max,
+            q1,
+            median,
+            q3,
+            outliers
+        };
+    }
+
+    public static sortByArray<T>(array: T[], order: string[], key: string): T[] {
+        return array.sort((a, b) => {
+            const A = a[key];
+            const B = b[key];
+            return order.indexOf(A) > order.indexOf(B) ? 1 : -1;
+        });
     }
 }

@@ -1,3 +1,4 @@
+export * from './box-plot';
 export * from './groups';
 export * from './iteration';
 export * from './key-value';

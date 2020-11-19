@@ -34,21 +34,36 @@ export class VirtualSpeedupError extends BaseChart {
 
                 Object.entries(items).forEach(([key, value]) => {
                     if (value instanceof Array) {
-                        previous[key] = [...previous[key] || [], Functions.getMedian(value)];
+                        const boxPlot = Functions.getBoxPlot(value);
+                        const data = [ boxPlot.min, boxPlot.q1, boxPlot.median, boxPlot.q3, boxPlot.max ];
+                        previous[key] = [...previous[key] || [], data];
+                        const index = previous[key].length - 1;
+                        boxPlot.outliers.forEach(outlier => {
+                            previous[Constants.OUTLIERS] = [...previous[Constants.OUTLIERS] || [], [ index, outlier ]];
+                        });
                     }
                 })
-            }
 
+                const total = Object.values(items.error).reduce<number>((sum: number, value: number) => {
+                    return sum + Math.pow(value / 100, 2);
+                }, 0) * 100;
+
+                previous[Constants.AGGREGATE] = [...previous[Constants.AGGREGATE] || [], total];
+            }
             return previous;
         }, {});
 
-        const series = this.buildSeries(groups);
+        const series = this.buildSeries(groups, ['error', Constants.OUTLIERS, Constants.AGGREGATE ]);
+        // console.log('series', series)
 
         return this.buildChart(series);
     }
 
-    protected getOptions(series: {[key: string]: number[]}): {} {
+    protected getOptions(series: {}[]): {} {
         return {
+            chart: {
+                type: 'boxplot'
+            },
             title: {
                 text: 'Virtual Speedup Error'
             },
@@ -56,23 +71,23 @@ export class VirtualSpeedupError extends BaseChart {
                 enabled: false
             },
             xAxis: {
+                categories: this.categories,
+                gridLineWidth: 1,
                 title: {
-                    text: 'No. Users'
+                    text: 'Rate'
                 },
-                categories: this.categories
+                labels: {
+                    style: {
+                        fontSize: '6px'
+                    }
+                }
             },
             yAxis: {
                 title: {
                     text: 'Percentil'
                 },
-                tickInterval: 2,
-                min: -20,
-                max: 20
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
+                // min: -20,
+                // max: 20
             },
             series
         };
