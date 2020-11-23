@@ -99,6 +99,16 @@ export default class Functions {
         };
     }
 
+    public static toPlot(boxPLot: BoxPLot): number[] {
+        return [
+            boxPLot.min,
+            boxPLot.q1,
+            boxPLot.median,
+            boxPLot.q3,
+            boxPLot.max
+        ];
+    }
+
     public static sortByArray<T>(array: T[], order: string[], key: string): T[] {
         return array.sort((a, b) => {
             const A = a[key];

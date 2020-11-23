@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "dist/app.js",
 	"scripts": {
-		"start": "time tsc --skipLibCheck --extendedDiagnostics && node dist/app.js",
+		"start": "tsc --skipLibCheck && node dist/app.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Jackson Castro",

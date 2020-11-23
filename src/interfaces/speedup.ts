@@ -4,8 +4,4 @@ export interface Speedup {
 
     vs: number;
 
-    rsLimited?: number;
-
-    vsLimited?: number;
-
 }

@@ -35,7 +35,7 @@ export class VirtualSpeedupError extends BaseChart {
                 Object.entries(items).forEach(([key, value]) => {
                     if (value instanceof Array) {
                         const boxPlot = Functions.getBoxPlot(value);
-                        const data = [ boxPlot.min, boxPlot.q1, boxPlot.median, boxPlot.q3, boxPlot.max ];
+                        const data = Functions.toPlot(boxPlot);
                         previous[key] = [...previous[key] || [], data];
                         const index = previous[key].length - 1;
                         boxPlot.outliers.forEach(outlier => {

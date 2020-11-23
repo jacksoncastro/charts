@@ -8,7 +8,7 @@ export default class CSVExporter {
         this.groups = groups;
     }
 
-    // Serviço, RS, RSLimited, VS, VSLimited, Erro, ErroLimited
+    // Serviço, RS, VS, Erro
     public generate(): Promise<void> {
         Object.entries(this.groups).forEach(([key, values]) => {
             const x = values.reduce((previous, current) => {
