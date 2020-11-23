@@ -34,32 +34,37 @@ export class SpeedupRealVirtual extends BaseChart {
                 return p;
             }, {});
 
-            const nt: number = y[Constants.NT];
-            const ats: number = y[Constants.ATS];
-            const dt: number = y[Constants.DT];
-            const dts: number = y[Constants.DTS];
+            // const nt: number = y[Constants.NT];
+            // const ats: number = y[Constants.ATS];
+            // const dt: number = y[Constants.DT];
+            // const dts: number = y[Constants.DTS];
 
-            this.print(key, y, nt, ats, dt, dts);
+            // this.print(key, y, nt, ats, dt, dts);
 
             const speedups = this.getSpeedups(iterations);
+            const groups = Functions.group(speedups);
 
-            const plotSpeedups = this.getPlotSpeedups(speedups);
+            Object.entries(groups).forEach(([k, v], i) => {
+                const boxPlot = Functions.getBoxPlot(v);
+                const plots = Functions.toPlot(boxPlot);
+                previous[k] = [...previous[k] || [], plots];
 
-            previous[key] = [...previous[key] || [], plotSpeedups];
+                const index = previous[k].length - 1;
+                boxPlot.outliers.forEach(outlier => {
+                    let point: number;
+                    if (i === 0) {
+                        point = -0.15
+                    } else {
+                        point = 0.185
+                    }
+                    previous[Constants.OUTLIERS] = [...previous[Constants.OUTLIERS] || [], [index + point, outlier]];
+                })
+            });
 
             return previous;
         }, {});
 
-        const plots = Object.values(data).reduce((previous, value) => {
-                Object.values(value).forEach(items => {
-                    Object.entries(items).forEach(([key, values]) => {
-                        previous[key] = [...previous[key] || [] , values];
-                    });
-                });
-            return previous;
-        }, {});
-
-        const series = this.buildSeries(plots, ['rs', 'vs']);
+        const series = this.buildSeries(data, ['rs', 'vs', Constants.OUTLIERS]);
 
         return this.buildChart(series);
     }
@@ -119,8 +124,8 @@ export class SpeedupRealVirtual extends BaseChart {
                 title: {
                     text: 'Performance Gain'
                 },
-                min: 0,
-                max: 1
+                min: 0.75,
+                max: 1.25
             },
             series
         };
@@ -155,15 +160,6 @@ export class SpeedupRealVirtual extends BaseChart {
                 vs
             };
         });
-    }
-
-    private getPlotSpeedups(speedups: Speedup[]) {
-        const group = Functions.group(speedups);
-        return Object.entries(group)
-            .reduce((previous, [key, value]) => {
-                previous[key] = Functions.getPlot(value);
-                return previous;
-            }, {});
     }
 
     private getIterationByKey<T extends Iteration>(data: T[], key: string): number {
