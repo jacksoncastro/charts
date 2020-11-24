@@ -86,6 +86,7 @@ export class VirtualSpeedupError extends BaseChart {
                 title: {
                     text: 'Percentil'
                 },
+                // tickInterval: 2
                 // min: -20,
                 // max: 20
             },

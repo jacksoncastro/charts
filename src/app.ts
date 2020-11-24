@@ -274,54 +274,54 @@ const parameters: Parameter[] = [
     //     folder: 'checkoutservice-75'
     // }
 
-    // {
-    //     category: 'frontend-DELAY-25-USERS-50-ITER-50',
-    //     folder: 'frontend-DELAY-25-USERS-50-ITER-50'
-    // },
-    // {
-    //     category: 'frontend-DELAY-50-USERS-50-ITER-50',
-    //     folder: 'frontend-DELAY-50-USERS-50-ITER-50'
-    // },
-    // {
-    //     category: 'frontend-DELAY-75-USERS-50-ITER-50',
-    //     folder: 'frontend-DELAY-75-USERS-50-ITER-50'
-    // },
-    // {
-    //     category: 'frontend-DELAY-25-USERS-100-ITER-100',
-    //     folder: 'frontend-DELAY-25-USERS-100-ITER-100'
-    // },
-    // {
-    //     category: 'frontend-DELAY-50-USERS-100-ITER-100',
-    //     folder: 'frontend-DELAY-50-USERS-100-ITER-100'
-    // },
-    // {
-    //     category: 'frontend-DELAY-75-USERS-100-ITER-100',
-    //     folder: 'frontend-DELAY-75-USERS-100-ITER-100'
-    // },
-    // // {
-    // //     category: 'frontend-DELAY-25-USERS-150-ITER-150',
-    // //     folder: 'frontend-DELAY-25-USERS-150-ITER-150'
-    // // },
-    // // {
-    // //     category: 'frontend-DELAY-50-USERS-150-ITER-150',
-    // //     folder: 'frontend-DELAY-50-USERS-150-ITER-150'
-    // // },
-    // // {
-    // //     category: 'frontend-DELAY-75-USERS-150-ITER-150',
-    // //     folder: 'frontend-DELAY-75-USERS-150-ITER-150'
-    // // },
-    // // {
-    // //     category: 'frontend-DELAY-25-USERS-200-ITER-200',
-    // //     folder: 'frontend-DELAY-25-USERS-200-ITER-200'
-    // // },
-    // // {
-    // //     category: 'frontend-DELAY-50-USERS-200-ITER-200',
-    // //     folder: 'frontend-DELAY-50-USERS-200-ITER-200'
-    // // },
-    // // {
-    // //     category: 'frontend-DELAY-75-USERS-200-ITER-200',
-    // //     folder: 'frontend-DELAY-75-USERS-200-ITER-200'
-    // // }
+    {
+        category: 'frontend-DELAY-25-USERS-50-ITER-50',
+        folder: 'frontend-DELAY-25-USERS-50-ITER-50'
+    },
+    {
+        category: 'frontend-DELAY-50-USERS-50-ITER-50',
+        folder: 'frontend-DELAY-50-USERS-50-ITER-50'
+    },
+    {
+        category: 'frontend-DELAY-75-USERS-50-ITER-50',
+        folder: 'frontend-DELAY-75-USERS-50-ITER-50'
+    },
+    {
+        category: 'frontend-DELAY-25-USERS-100-ITER-100',
+        folder: 'frontend-DELAY-25-USERS-100-ITER-100'
+    },
+    {
+        category: 'frontend-DELAY-50-USERS-100-ITER-100',
+        folder: 'frontend-DELAY-50-USERS-100-ITER-100'
+    },
+    {
+        category: 'frontend-DELAY-75-USERS-100-ITER-100',
+        folder: 'frontend-DELAY-75-USERS-100-ITER-100'
+    },
+    {
+        category: 'frontend-DELAY-25-USERS-150-ITER-150',
+        folder: 'frontend-DELAY-25-USERS-150-ITER-150'
+    },
+    {
+        category: 'frontend-DELAY-50-USERS-150-ITER-150',
+        folder: 'frontend-DELAY-50-USERS-150-ITER-150'
+    },
+    {
+        category: 'frontend-DELAY-75-USERS-150-ITER-150',
+        folder: 'frontend-DELAY-75-USERS-150-ITER-150'
+    },
+    {
+        category: 'frontend-DELAY-25-USERS-200-ITER-200',
+        folder: 'frontend-DELAY-25-USERS-200-ITER-200'
+    },
+    {
+        category: 'frontend-DELAY-50-USERS-200-ITER-200',
+        folder: 'frontend-DELAY-50-USERS-200-ITER-200'
+    },
+    {
+        category: 'frontend-DELAY-75-USERS-200-ITER-200',
+        folder: 'frontend-DELAY-75-USERS-200-ITER-200'
+    }
 
     // {
     //     category: 'recommendationservice-DELAY-25-USERS-50-ITER-50',
@@ -416,10 +416,10 @@ const parameters: Parameter[] = [
     //     category: 'checkoutservice-DELAY-50-USERS-200-ITER-200',
     //     folder: 'checkoutservice-DELAY-50-USERS-200-ITER-200'
     // },
-    // // {
-    // //     category: 'checkoutservice-DELAY-75-USERS-200-ITER-200',
-    // //     folder: 'checkoutservice-DELAY-75-USERS-200-ITER-200'
-    // // }
+    // {
+    //     category: 'checkoutservice-DELAY-75-USERS-200-ITER-200',
+    //     folder: 'checkoutservice-DELAY-75-USERS-200-ITER-200'
+    // }
 
     // {
     //     category: 'productcatalogservice-DELAY-25-USERS-50-ITER-50',
@@ -453,10 +453,10 @@ const parameters: Parameter[] = [
     //     category: 'productcatalogservice-DELAY-50-USERS-150-ITER-150',
     //     folder: 'productcatalogservice-DELAY-50-USERS-150-ITER-150'
     // },
-    // // {
-    // //     category: 'productcatalogservice-DELAY-75-USERS-150-ITER-150',
-    // //     folder: 'productcatalogservice-DELAY-75-USERS-150-ITER-150'
-    // // },
+    // {
+    //     category: 'productcatalogservice-DELAY-75-USERS-150-ITER-150',
+    //     folder: 'productcatalogservice-DELAY-75-USERS-150-ITER-150'
+    // },
     // {
     //     category: 'productcatalogservice-DELAY-25-USERS-200-ITER-200',
     //     folder: 'productcatalogservice-DELAY-25-USERS-200-ITER-200'
@@ -519,54 +519,54 @@ const parameters: Parameter[] = [
     //     folder: 'cartservice-DELAY-75-USERS-200-ITER-200'
     // }
 
-    {
-        category: 'paymentservice-DELAY-25-USERS-50-ITER-50',
-        folder: 'paymentservice-DELAY-25-USERS-50-ITER-50'
-    },
-    {
-        category: 'paymentservice-DELAY-50-USERS-50-ITER-50',
-        folder: 'paymentservice-DELAY-50-USERS-50-ITER-50'
-    },
-    {
-        category: 'paymentservice-DELAY-75-USERS-50-ITER-50',
-        folder: 'paymentservice-DELAY-75-USERS-50-ITER-50'
-    },
-    {
-        category: 'paymentservice-DELAY-25-USERS-100-ITER-100',
-        folder: 'paymentservice-DELAY-25-USERS-100-ITER-100'
-    },
-    {
-        category: 'paymentservice-DELAY-50-USERS-100-ITER-100',
-        folder: 'paymentservice-DELAY-50-USERS-100-ITER-100'
-    },
+    // {
+    //     category: 'paymentservice-DELAY-25-USERS-50-ITER-50',
+    //     folder: 'paymentservice-DELAY-25-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'paymentservice-DELAY-50-USERS-50-ITER-50',
+    //     folder: 'paymentservice-DELAY-50-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'paymentservice-DELAY-75-USERS-50-ITER-50',
+    //     folder: 'paymentservice-DELAY-75-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'paymentservice-DELAY-25-USERS-100-ITER-100',
+    //     folder: 'paymentservice-DELAY-25-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'paymentservice-DELAY-50-USERS-100-ITER-100',
+    //     folder: 'paymentservice-DELAY-50-USERS-100-ITER-100'
+    // },
     // {
     //     category: 'paymentservice-DELAY-75-USERS-100-ITER-100',
     //     folder: 'paymentservice-DELAY-75-USERS-100-ITER-100'
     // },
-    // {
-    //     category: 'paymentservice-DELAY-25-USERS-150-ITER-150',
-    //     folder: 'paymentservice-DELAY-25-USERS-150-ITER-150'
-    // },
-    // {
-    //     category: 'paymentservice-DELAY-50-USERS-150-ITER-150',
-    //     folder: 'paymentservice-DELAY-50-USERS-150-ITER-150'
-    // },
-    // {
-    //     category: 'paymentservice-DELAY-75-USERS-150-ITER-150',
-    //     folder: 'paymentservice-DELAY-75-USERS-150-ITER-150'
-    // },
-    // {
-    //     category: 'paymentservice-DELAY-25-USERS-200-ITER-200',
-    //     folder: 'paymentservice-DELAY-25-USERS-200-ITER-200'
-    // },
-    // {
-    //     category: 'paymentservice-DELAY-50-USERS-200-ITER-200',
-    //     folder: 'paymentservice-DELAY-50-USERS-200-ITER-200'
-    // },
-    // {
-    //     category: 'paymentservice-DELAY-75-USERS-200-ITER-200',
-    //     folder: 'paymentservice-DELAY-75-USERS-200-ITER-200'
-    // }
+    // // {
+    // //     category: 'paymentservice-DELAY-25-USERS-150-ITER-150',
+    // //     folder: 'paymentservice-DELAY-25-USERS-150-ITER-150'
+    // // },
+    // // {
+    // //     category: 'paymentservice-DELAY-50-USERS-150-ITER-150',
+    // //     folder: 'paymentservice-DELAY-50-USERS-150-ITER-150'
+    // // },
+    // // {
+    // //     category: 'paymentservice-DELAY-75-USERS-150-ITER-150',
+    // //     folder: 'paymentservice-DELAY-75-USERS-150-ITER-150'
+    // // },
+    // // {
+    // //     category: 'paymentservice-DELAY-25-USERS-200-ITER-200',
+    // //     folder: 'paymentservice-DELAY-25-USERS-200-ITER-200'
+    // // },
+    // // {
+    // //     category: 'paymentservice-DELAY-50-USERS-200-ITER-200',
+    // //     folder: 'paymentservice-DELAY-50-USERS-200-ITER-200'
+    // // },
+    // // {
+    // //     category: 'paymentservice-DELAY-75-USERS-200-ITER-200',
+    // //     folder: 'paymentservice-DELAY-75-USERS-200-ITER-200'
+    // // }
 ];
 
 const chart = new Chart(parameters);

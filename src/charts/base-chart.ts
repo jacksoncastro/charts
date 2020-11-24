@@ -52,6 +52,7 @@ export default abstract class BaseChart {
 
             return {
                 name,
+                // pointWidth: 10,
                 data
             };
         });

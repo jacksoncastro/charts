@@ -53,9 +53,9 @@ export class SpeedupRealVirtual extends BaseChart {
                 boxPlot.outliers.forEach(outlier => {
                     let point: number;
                     if (i === 0) {
-                        point = -0.15
+                        point = -0.14
                     } else {
-                        point = 0.185
+                        point = 0.16
                     }
                     previous[Constants.OUTLIERS] = [...previous[Constants.OUTLIERS] || [], [index + point, outlier]];
                 })
@@ -124,8 +124,8 @@ export class SpeedupRealVirtual extends BaseChart {
                 title: {
                     text: 'Performance Gain'
                 },
-                min: 0.75,
-                max: 1.25
+                // min: 0.75,
+                // max: 1.25
             },
             series
         };
