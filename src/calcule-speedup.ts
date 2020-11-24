@@ -2,65 +2,14 @@ import YAML from 'yaml'
 
 import Constants from './constants';
 
-interface Service {
+import {
+    Delay,
+    Service,
+    Scenarie,
+    Scenaries,
+    Test
+} from './'
 
-    name: string;
-
-    median: number;
-}
-
-interface VirtualService {
-
-    delay: number;
-
-    target: string;
-
-    allButTarget?: boolean;
-}
-
-interface Limite {
-
-    from: string;
-
-    roles: string[];
-}
-
-interface Test {
-
-    name: string;
-
-    limite?: Limite;
-
-    virtualServices: VirtualService[];
-}
-
-interface Scenarie {
-
-    title: string;
-
-    users: number;
-
-    iterations: number;
-
-    rounds: number;
-
-    tests: Test[];
-}
-
-interface Scenaries {
-
-    scenaries: Scenarie[];
-
-}
-
-interface Delay {
-
-    key: string;
-
-    service: string;
-
-    delay: number;
-}
 
 // tslint:disable:no-console
 export default class CalculeSpeedup {

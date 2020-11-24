@@ -7,3 +7,4 @@ export * from './metrics';
 export * from './parameter';
 export * from './plot';
 export * from './speedup';
+export * from './scenaries';

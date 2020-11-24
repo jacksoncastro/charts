@@ -274,54 +274,54 @@ const parameters: Parameter[] = [
     //     folder: 'checkoutservice-75'
     // }
 
-    {
-        category: 'frontend-DELAY-25-USERS-50-ITER-50',
-        folder: 'frontend-DELAY-25-USERS-50-ITER-50'
-    },
-    {
-        category: 'frontend-DELAY-50-USERS-50-ITER-50',
-        folder: 'frontend-DELAY-50-USERS-50-ITER-50'
-    },
-    {
-        category: 'frontend-DELAY-75-USERS-50-ITER-50',
-        folder: 'frontend-DELAY-75-USERS-50-ITER-50'
-    },
-    {
-        category: 'frontend-DELAY-25-USERS-100-ITER-100',
-        folder: 'frontend-DELAY-25-USERS-100-ITER-100'
-    },
-    {
-        category: 'frontend-DELAY-50-USERS-100-ITER-100',
-        folder: 'frontend-DELAY-50-USERS-100-ITER-100'
-    },
-    {
-        category: 'frontend-DELAY-75-USERS-100-ITER-100',
-        folder: 'frontend-DELAY-75-USERS-100-ITER-100'
-    },
-    {
-        category: 'frontend-DELAY-25-USERS-150-ITER-150',
-        folder: 'frontend-DELAY-25-USERS-150-ITER-150'
-    },
-    {
-        category: 'frontend-DELAY-50-USERS-150-ITER-150',
-        folder: 'frontend-DELAY-50-USERS-150-ITER-150'
-    },
-    {
-        category: 'frontend-DELAY-75-USERS-150-ITER-150',
-        folder: 'frontend-DELAY-75-USERS-150-ITER-150'
-    },
-    {
-        category: 'frontend-DELAY-25-USERS-200-ITER-200',
-        folder: 'frontend-DELAY-25-USERS-200-ITER-200'
-    },
-    {
-        category: 'frontend-DELAY-50-USERS-200-ITER-200',
-        folder: 'frontend-DELAY-50-USERS-200-ITER-200'
-    },
-    {
-        category: 'frontend-DELAY-75-USERS-200-ITER-200',
-        folder: 'frontend-DELAY-75-USERS-200-ITER-200'
-    }
+    // {
+    //     category: 'frontend-DELAY-25-USERS-50-ITER-50',
+    //     folder: 'frontend-DELAY-25-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'frontend-DELAY-50-USERS-50-ITER-50',
+    //     folder: 'frontend-DELAY-50-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'frontend-DELAY-75-USERS-50-ITER-50',
+    //     folder: 'frontend-DELAY-75-USERS-50-ITER-50'
+    // },
+    // {
+    //     category: 'frontend-DELAY-25-USERS-100-ITER-100',
+    //     folder: 'frontend-DELAY-25-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'frontend-DELAY-50-USERS-100-ITER-100',
+    //     folder: 'frontend-DELAY-50-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'frontend-DELAY-75-USERS-100-ITER-100',
+    //     folder: 'frontend-DELAY-75-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'frontend-DELAY-25-USERS-150-ITER-150',
+    //     folder: 'frontend-DELAY-25-USERS-150-ITER-150'
+    // },
+    // {
+    //     category: 'frontend-DELAY-50-USERS-150-ITER-150',
+    //     folder: 'frontend-DELAY-50-USERS-150-ITER-150'
+    // },
+    // {
+    //     category: 'frontend-DELAY-75-USERS-150-ITER-150',
+    //     folder: 'frontend-DELAY-75-USERS-150-ITER-150'
+    // },
+    // {
+    //     category: 'frontend-DELAY-25-USERS-200-ITER-200',
+    //     folder: 'frontend-DELAY-25-USERS-200-ITER-200'
+    // },
+    // {
+    //     category: 'frontend-DELAY-50-USERS-200-ITER-200',
+    //     folder: 'frontend-DELAY-50-USERS-200-ITER-200'
+    // },
+    // {
+    //     category: 'frontend-DELAY-75-USERS-200-ITER-200',
+    //     folder: 'frontend-DELAY-75-USERS-200-ITER-200'
+    // }
 
     // {
     //     category: 'recommendationservice-DELAY-25-USERS-50-ITER-50',
@@ -567,10 +567,15 @@ const parameters: Parameter[] = [
     // //     category: 'paymentservice-DELAY-75-USERS-200-ITER-200',
     // //     folder: 'paymentservice-DELAY-75-USERS-200-ITER-200'
     // // }
+
+    {
+        category: 'productcatalogservice-EXT-2000ms-DELAY-25-USERS-100-ITER-100',
+        folder: 'productcatalogservice-EXT-2000ms-DELAY-25-USERS-100-ITER-100'
+    }
 ];
 
-const chart = new Chart(parameters);
-chart.init();
+// const chart = new Chart(parameters);
+// chart.init();
 
 // const median = new Median('no-delay-100-100', 'NO_DELAY');
 // median.calcule();
@@ -612,6 +617,6 @@ const delays = [
     25, 50, 75
 ];
 // 50, 100, 150 e 200
-// const x = 200;
-// const calculeSpeedup = new CalculeSpeedup('paymentservice', services, delays, x, x, 10);
-// calculeSpeedup.calcule();
+const x = 100;
+const calculeSpeedup = new CalculeSpeedup('productcatalogservice', services, delays, x, x, 10);
+calculeSpeedup.calcule();
