@@ -1,5 +1,6 @@
 import Chart from './chart';
 import Median from './median';
+import Test from './test';
 import CalculeSpeedup from './calcule-speedup';
 import { Parameter } from './interfaces';
 
@@ -568,14 +569,72 @@ const parameters: Parameter[] = [
     // //     folder: 'paymentservice-DELAY-75-USERS-200-ITER-200'
     // // }
 
+    // {
+    //     category: 'productcatalogservice-EXL-2000ms-PEG-1500ms-USERS-100-ITER-100',
+    //     folder: 'productcatalogservice-EXL-2000ms-PEG-1500ms-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'productcatalogservice-EXL-2000ms-PEG-1000ms-USERS-100-ITER-100',
+    //     folder: 'productcatalogservice-EXL-2000ms-PEG-1000ms-USERS-100-ITER-100'
+    // },
+    // {
+    //     category: 'productcatalogservice-EXL-2000ms-PEG-500ms-USERS-100-ITER-100',
+    //     folder: 'productcatalogservice-EXL-2000ms-PEG-500ms-USERS-100-ITER-100'
+    // },
+
+    // {
+    //     category: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG',
+    //     folder: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG/'
+    // },
+    // {
+    //     category: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG',
+    //     folder: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG/'
+    // },
+    // {
+    //     category: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG',
+    //     folder: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG/'
+    // },
+    // {
+    //     category: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG',
+    //     folder: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG/'
+    // },
+    // {
+    //     category: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG',
+    //     folder: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG/'
+    // },
+    // {
+    //     category: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG',
+    //     folder: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG/'
+    // }
+
     {
-        category: 'productcatalogservice-EXT-2000ms-DELAY-25-USERS-100-ITER-100',
-        folder: 'productcatalogservice-EXT-2000ms-DELAY-25-USERS-100-ITER-100'
+        category: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG-modern',
+        folder: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG-modern/'
+    },
+    {
+        category: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG-modern',
+        folder: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG-modern/'
+    },
+    {
+        category: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG-modern',
+        folder: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG-modern/'
+    },
+    {
+        category: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG-modern',
+        folder: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG-modern/'
+    },
+    {
+        category: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG-modern',
+        folder: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG-modern/'
+    },
+    {
+        category: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG-modern',
+        folder: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG-modern/'
     }
 ];
 
-// const chart = new Chart(parameters);
-// chart.init();
+const chart = new Chart(parameters);
+chart.init();
 
 // const median = new Median('no-delay-100-100', 'NO_DELAY');
 // median.calcule();
@@ -617,6 +676,9 @@ const delays = [
     25, 50, 75
 ];
 // 50, 100, 150 e 200
-const x = 100;
-const calculeSpeedup = new CalculeSpeedup('productcatalogservice', services, delays, x, x, 10);
-calculeSpeedup.calcule();
+// const x = 100;
+// const calculeSpeedup = new CalculeSpeedup('productcatalogservice', services, delays, x, x, 10);
+// calculeSpeedup.calcule();
+
+// const test = new Test(100, 100);
+// test.calculeNew();
