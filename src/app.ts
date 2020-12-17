@@ -582,6 +582,8 @@ const parameters: Parameter[] = [
     //     folder: 'productcatalogservice-EXL-2000ms-PEG-500ms-USERS-100-ITER-100'
     // },
 
+    // -------- NEW ------
+
     // {
     //     category: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG',
     //     folder: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG/'
@@ -607,30 +609,81 @@ const parameters: Parameter[] = [
     //     folder: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG/'
     // }
 
+    // {
+    //     category: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG-modern',
+    //     folder: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG-modern/'
+    // },
+    // {
+    //     category: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG-modern',
+    //     folder: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG-modern/'
+    // },
+    // {
+    //     category: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG-modern',
+    //     folder: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG-modern/'
+    // },
+    // {
+    //     category: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG-modern',
+    //     folder: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG-modern/'
+    // },
+    // {
+    //     category: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG-modern',
+    //     folder: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG-modern/'
+    // },
+    // {
+    //     category: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG-modern',
+    //     folder: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG-modern/'
+    // }
+
+
     {
-        category: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG-modern',
-        folder: 'productcatalog-50-USERS-50-ITER-100-EXL-50-PEG-modern/'
+        category: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG',
+        folder: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG/'
     },
     {
-        category: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG-modern',
-        folder: 'productcatalog-100-USERS-100-ITER-100-EXL-50-PEG-modern/'
+        category: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG',
+        folder: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG/'
     },
     {
-        category: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG-modern',
-        folder: 'productcatalog-150-USERS-150-ITER-100-EXL-50-PEG-modern/'
+        category: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG',
+        folder: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG/'
     },
     {
-        category: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG-modern',
-        folder: 'productcatalog-50-USERS-50-ITER-100-EXL-100-PEG-modern/'
+        category: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG',
+        folder: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG/'
     },
     {
-        category: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG-modern',
-        folder: 'productcatalog-100-USERS-100-ITER-100-EXL-100-PEG-modern/'
+        category: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG',
+        folder: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG/'
     },
     {
-        category: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG-modern',
-        folder: 'productcatalog-150-USERS-150-ITER-100-EXL-100-PEG-modern/'
+        category: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG',
+        folder: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG/'
     }
+
+    // {
+    //     category: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG-modern',
+    //     folder: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG-modern/'
+    // },
+    // {
+    //     category: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG-modern',
+    //     folder: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG-modern/'
+    // },
+    // {
+    //     category: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG-modern',
+    //     folder: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG-modern/'
+    // },
+    // {
+    //     category: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG-modern',
+    //     folder: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG-modern/'
+    // },
+    // {
+    //     category: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG-modern',
+    //     folder: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG-modern/'
+    // },
+    // {
+    //     category: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG-modern',
+    //     folder: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG-modern/'
+    // }
 ];
 
 const chart = new Chart(parameters);
