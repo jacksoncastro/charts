@@ -3,6 +3,8 @@ import Median from './median';
 import Test from './test';
 import CalculeSpeedup from './calcule-speedup';
 import { Parameter } from './interfaces';
+import CalculeGain from './calcule-gain';
+
 
 const parameters: Parameter[] = [
     // {
@@ -635,30 +637,30 @@ const parameters: Parameter[] = [
     // }
 
 
-    {
-        category: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG',
-        folder: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG/'
-    },
-    {
-        category: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG',
-        folder: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG/'
-    },
-    {
-        category: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG',
-        folder: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG/'
-    },
-    {
-        category: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG',
-        folder: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG/'
-    },
-    {
-        category: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG',
-        folder: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG/'
-    },
-    {
-        category: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG',
-        folder: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG/'
-    }
+    // {
+    //     category: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG',
+    //     folder: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG/'
+    // },
+    // {
+    //     category: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG',
+    //     folder: 'recommendation-100-USERS-100-ITER-100-EXL-50-PEG/'
+    // },
+    // {
+    //     category: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG',
+    //     folder: 'recommendation-150-USERS-150-ITER-100-EXL-50-PEG/'
+    // },
+    // {
+    //     category: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG',
+    //     folder: 'recommendation-50-USERS-50-ITER-100-EXL-100-PEG/'
+    // },
+    // {
+    //     category: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG',
+    //     folder: 'recommendation-100-USERS-100-ITER-100-EXL-100-PEG/'
+    // },
+    // {
+    //     category: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG',
+    //     folder: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG/'
+    // }
 
     // {
     //     category: 'recommendation-50-USERS-50-ITER-100-EXL-50-PEG-modern',
@@ -684,54 +686,112 @@ const parameters: Parameter[] = [
     //     category: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG-modern',
     //     folder: 'recommendation-150-USERS-150-ITER-100-EXL-100-PEG-modern/'
     // }
+
+    {
+        category: 'productcatalog-50-USERS-50-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO',
+        folder: 'productcatalog-50-USERS-50-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO/'
+    },
+    // {
+    //     category: 'productcatalog-50-USERS-50-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO',
+    //     folder: 'productcatalog-50-USERS-50-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO/'
+    // },
+    // {
+    //     category: 'productcatalog-50-USERS-50-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO',
+    //     folder: 'productcatalog-50-USERS-50-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO/'
+    // },
+    {
+        category: 'productcatalog-100-USERS-100-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO',
+        folder: 'productcatalog-100-USERS-100-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO/'
+    },
+    // {
+    //     category: 'productcatalog-100-USERS-100-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO',
+    //     folder: 'productcatalog-100-USERS-100-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO/'
+    // },
+    // {
+    //     category: 'productcatalog-100-USERS-100-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO',
+    //     folder: 'productcatalog-100-USERS-100-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO/'
+    // },
+    {
+        category: 'productcatalog-150-USERS-150-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO',
+        folder: 'productcatalog-150-USERS-150-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO/'
+    },
+    // {
+    //     category: 'productcatalog-150-USERS-150-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO',
+    //     folder: 'productcatalog-150-USERS-150-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO/'
+    // },
+    // {
+    //     category: 'productcatalog-150-USERS-150-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO',
+    //     folder: 'productcatalog-150-USERS-150-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO/'
+    // },
+    {
+        category: 'productcatalog-200-USERS-200-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO',
+        folder: 'productcatalog-200-USERS-200-ITER-2000-EXTRA-LATENCIA-25-PORCENTO-GANHO/'
+    },
+    // {
+    //     category: 'productcatalog-200-USERS-200-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO',
+    //     folder: 'productcatalog-200-USERS-200-ITER-2000-EXTRA-LATENCIA-50-PORCENTO-GANHO/'
+    // },
+    // {
+    //     category: 'productcatalog-200-USERS-200-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO',
+    //     folder: 'productcatalog-200-USERS-200-ITER-2000-EXTRA-LATENCIA-75-PORCENTO-GANHO/'
+    // },
 ];
 
 const chart = new Chart(parameters);
 chart.init();
 
+// const gain = new CalculeGain();
+// gain.calcule();
+// gain.calculeAgregate();
+// gain.count();
+
 // const median = new Median('no-delay-100-100', 'NO_DELAY');
 // median.calcule();
 
 const services = [
+    // {
+    //     name: 'emailservice', median: 10
+    // },
+    // {
+    //     name: 'paymentservice', median: 6
+    // },
+    // {
+    //     name: 'adservice', median: 73
+    // },
+    // {
+    //     name: 'cartservice', median: 14
+    // },
+    // {
+    //     name: 'checkoutservice', median: 312
+    // },
+    // {
+    //     name: 'currencyservice', median: 14
+    // },
     {
-        name: 'emailservice', median: 10
+        name: 'productcatalogservice', median: 2000
     },
-    {
-        name: 'paymentservice', median: 6
-    },
-    {
-        name: 'adservice', median: 73
-    },
-    {
-        name: 'cartservice', median: 14
-    },
-    {
-        name: 'checkoutservice', median: 312
-    },
-    {
-        name: 'currencyservice', median: 14
-    },
-    {
-        name: 'productcatalogservice', median: 7
-    },
-    {
-        name: 'recommendationservice', median: 50
-    },
-    {
-        name: 'shippingservice', median: 3
-    },
-    {
-        name: 'frontend', median: 383
-    }
+    // {
+    //     name: 'recommendationservice', median: 50
+    // },
+    // {
+    //     name: 'shippingservice', median: 3
+    // },
+    // {
+    //     name: 'frontend', median: 383
+    // }
 ];
 
 const delays = [
     25, 50, 75
 ];
 // 50, 100, 150 e 200
-// const x = 100;
-// const calculeSpeedup = new CalculeSpeedup('productcatalogservice', services, delays, x, x, 10);
+const x = 50;
+const rounds = 10;
+// const calculeSpeedup = new CalculeSpeedup('productcatalogservice', services, delays, x, x, rounds);
 // calculeSpeedup.calcule();
 
-// const test = new Test(100, 100);
+// const extraLatency = 2000;
+// const percent = 25;
+// const performanceGain = extraLatency * percent / 100;
+// const test = new Test(extraLatency, performanceGain);
 // test.calculeNew();

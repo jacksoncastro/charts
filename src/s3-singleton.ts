@@ -3,6 +3,7 @@ import AWS from 'aws-sdk';
 const ACCESS_KEY = process.env.ACCESS_KEY;
 const SECRET_KEY = process.env.SECRET_KEY;
 const BUCKET_NAME = 'hipstershop-k6';
+// const BUCKET_NAME = 'blueperf-k6';
 
 class S3Bucket {
 
